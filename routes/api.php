@@ -2,8 +2,6 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProductController;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -23,11 +21,14 @@ Route::apiResource(
     '/products',
     'App\Http\Controllers\ProductController'
 );
+
 Route::group(
-    ['prefix' => 'products'],
+    [
+        'prefix' => 'products'
+    ],
     function () {
         Route::apiResource(
-            '/{products}/review',
+            '/{product}/review',
             'App\Http\Controllers\ReviewController'
         );
     }
