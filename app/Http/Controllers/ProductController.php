@@ -106,6 +106,12 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+
+        if ($product) {
+            return  response([
+                null
+            ], 204);
+        }
     }
 }
