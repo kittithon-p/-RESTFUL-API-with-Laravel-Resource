@@ -86,7 +86,16 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $request['name'] = $request->name;
+        $request['detail'] = $request->description;
+        unset($request['description']);
+
+        $product->update($request->all());
+        if ($product) {
+            return  response([
+                'data' => new ProductResource($product)
+            ], 201);
+        }
     }
 
     /**
