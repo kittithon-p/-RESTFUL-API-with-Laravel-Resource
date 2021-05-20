@@ -24,6 +24,7 @@ class ReviewRequest extends FormRequest
     public function rules()
     {
         return [
+            'id' => $this->id,
             'customer' => 'required',
             'star' => 'required|integer|between:0,5',
             'review' => 'required'

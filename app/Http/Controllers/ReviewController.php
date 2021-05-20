@@ -38,11 +38,12 @@ class ReviewController extends Controller
      */
     public function store(ReviewRequest $request, Product $product)
     {
-        $review = new Review();
+        // $review = new Review();
 
-        $review->customer = $request->customer;
-        $review->star = $request->star;
-        $review->review = $request->review;
+        // $review->customer = $request->customer;
+        // $review->star = $request->star;
+        // $review->review = $request->review;
+        $review = new Review($request->all());
 
         $product->reviews()->save($review);
         return response([
@@ -79,9 +80,12 @@ class ReviewController extends Controller
      * @param  \App\Models\Review  $review
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Review $review)
+    public function update(Request $request, Product $product, Review $review)
     {
-        //
+        $review->update($request->all());
+        return response([
+            'data' => new ReviewResource($review)
+        ], 201);
     }
 
     /**
